@@ -8,6 +8,8 @@ Next.js 16 Web3 boilerplate using the App Router, React 19, Wagmi v2, Viem, Rain
 
 ## Commands
 
+All commands support `yarn`, `bun`, `pnpm`, or `npm` (e.g., `yarn dev` or `bun dev`).
+
 - **Dev server**: `yarn dev` (Turbopack is the default in Next.js 16)
 - **Build**: `yarn build`
 - **Start production**: `yarn start`
@@ -78,7 +80,11 @@ Chakra UI v3 with `defaultSystem` + CSS Modules (`*.module.css`) + global CSS va
 - **Import order** (enforced by ESLint): React first, then external, then internal — alphabetized with newlines between groups
 - **ESLint**: v9 flat config (`eslint.config.mjs`), extends `eslint-config-next` (native flat config) + `@typescript-eslint` plugin + Prettier + CSS + import plugins.
 - **Lint command**: `eslint --fix .` (Next.js 16 removed `next lint`)
+- **TypeScript**: Strict mode enabled with `noUnusedLocals` and `noUnusedParameters`
 
 ## Environment Setup
+
+- **Node.js**: Minimum v20.9.0, developed on LTS v23
+- **TypeScript**: v5.9 (developed on v5.9)
 
 Copy `.env.example` to `.env` and set `NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID` (from WalletConnect Cloud). The app will throw at startup if this is missing.
