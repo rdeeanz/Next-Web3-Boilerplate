@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Next.js 16 Web3 boilerplate using the App Router, React 19, Wagmi v2, Viem, RainbowKit, and Chakra UI v3. Single-page dApp supporting 16 EVM chains (8 mainnets + 8 testnets) and 8 wallet connectors.
+Next.js 16.1.6 Web3 boilerplate using the App Router, React 19.2.4, Wagmi 2.19.5, Viem 2.45.3, RainbowKit 2.2.10, and Chakra UI 3.33.0. Single-page dApp supporting 16 EVM chains (8 mainnets + 8 testnets) and 8 wallet connectors.
 
 ## Commands
 
@@ -25,8 +25,10 @@ The pre-commit hook runs `yarn prettier`, `yarn lint`, then `git add .` automati
 
 ### Routing & Providers
 
-Next.js App Router with a single route (`/`). Provider chain in `src/app/providers.tsx`:
-`ChakraProvider` → `ThemeProvider` → `WagmiProvider` → `QueryClientProvider` → `RainbowKitProvider` (with `<Toaster />` as sibling). A `useSyncExternalStore` guard prevents SSR hydration mismatches.
+Next.js App Router with a single route (`/`) — this is a single-page application with no client-side routing. Provider chain in `src/app/providers.tsx`:
+`ChakraProvider` → `ThemeProvider` → `WagmiProvider` → `QueryClientProvider` → `RainbowKitProvider` (with `<Toaster />` as sibling).
+
+**SSR Guard**: The provider uses a `useSyncExternalStore` hook that returns `false` on the server and `true` on the client, preventing hydration mismatches by rendering `null` until mounted.
 
 ### Component Organization
 
@@ -47,6 +49,7 @@ src/components/
 
 Other key directories:
 - `src/lib/` — Utility instances (`toaster.ts` — Chakra toaster instance + `SignatureMeta` type)
+- `src/utils/` — Utility functions (`formatters.ts` — value formatting)
 - `src/constants.ts` — Shared constants (`BREAKPOINTS`, `DEBOUNCE_MS`, `TOAST_DURATION`, `TOAST_MAX`)
 
 Components use barrel exports (`index.ts` in each folder). All components are client components (`"use client"`).
